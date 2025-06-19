@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: frontend-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/AntonioJordan/cicdcompletelab-openshift
+    targetRevision: HEAD
+    path: .
+    directory:
+      recurse: true
+  destination:
+    server: https://api-rm2-thpm-p1-openshiftapps-com:6443
+    namespace: tonijordanrodriguez6-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false
