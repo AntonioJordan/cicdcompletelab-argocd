@@ -8,15 +8,15 @@ spec:
   source:
     repoURL: https://github.com/AntonioJordan/cicdcompletelab-openshift
     targetRevision: HEAD
-    path: .
+    path: /minikube
     directory:
       recurse: true
   destination:
-    server: https://api-rm2-thpm-p1-openshiftapps-com:6443
-    namespace: tonijordanrodriguez6-dev
+    server: https://kubernetes.default.svc
+    namespace: react-app
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=false
+      - CreateNamespace=true
