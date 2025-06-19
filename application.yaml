@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/AntonioJordan/cicdcompletelab-openshift
     targetRevision: HEAD
-    path: /minikube
+    path: minikube
     directory:
       recurse: true
   destination:
