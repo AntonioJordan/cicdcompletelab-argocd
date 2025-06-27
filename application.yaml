@@ -9,8 +9,9 @@ spec:
     repoURL: https://github.com/AntonioJordan/cicdcompletelab-openshift
     targetRevision: HEAD
     path: minikube/helm-chart
-    directory:
-      recurse: true
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: react-app
