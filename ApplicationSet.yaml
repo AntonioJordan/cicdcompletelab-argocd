@@ -22,6 +22,9 @@ spec:
             targetRevision: HEAD
             path: helm-templates
             namespace: react-app
+            helm:
+              valueFiles:
+                - react-values.yaml
   template:
     metadata:
       name: '{{name}}'
