@@ -7,25 +7,21 @@ spec:
   generators:
     - list:
         elements:
-          - name: frontend-app
+          - name: prometheus
+            repoURL: https://github.com/AntonioJordan/cicdcompletelab-argocd
+            targetRevision: HEAD
+            path: apps/prometheus
+            namespace: monitoring
+          - name: grafana
+            repoURL: https://github.com/AntonioJordan/cicdcompletelab-argocd
+            targetRevision: HEAD
+            path: apps/grafana
+            namespace: monitoring
+          - name: frontend
             repoURL: https://github.com/AntonioJordan/cicdcompletelab-openshift
             targetRevision: HEAD
             path: helm-templates
             namespace: react-app
-            chart: ""
-            valueFile: react-values.yaml
-          - name: prometheus
-            repoURL: https://prometheus-community.github.io/helm-charts
-            chart: prometheus
-            targetRevision: 25.21.0
-            namespace: monitoring
-            valueFile: values/prometheus-values.yaml
-          - name: grafana
-            repoURL: https://grafana.github.io/helm-charts
-            chart: grafana
-            targetRevision: 6.57.4
-            namespace: monitoring
-            valueFile: values/grafana-values.yaml
   template:
     metadata:
       name: '{{name}}'
@@ -35,10 +31,6 @@ spec:
         repoURL: '{{repoURL}}'
         targetRevision: '{{targetRevision}}'
         path: '{{path}}'
-        chart: '{{chart}}'
-        helm:
-          valueFiles:
-            - '{{valueFile}}'
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{namespace}}'
