@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: full-stack
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - name: frontend-app
+            repoURL: https://github.com/AntonioJordan/cicdcompletelab-openshift
+            targetRevision: HEAD
+            path: minikube/helm-chart
+            namespace: react-app
+            chart: ""
+            valueFile: values/react-values.yaml
+          - name: prometheus
+            repoURL: https://prometheus-community.github.io/helm-charts
+            chart: prometheus
+            targetRevision: 25.21.0
+            namespace: monitoring
+            valueFile: values/prometheus-values.yaml
+          - name: grafana
+            repoURL: https://grafana.github.io/helm-charts
+            chart: grafana
+            targetRevision: 6.57.4
+            namespace: monitoring
+            valueFile: values/grafana-values.yaml
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: '{{repoURL}}'
+        targetRevision: '{{targetRevision}}'
+        path: '{{path}}'
+        chart: '{{chart}}'
+        helm:
+          valueFiles:
+            - '{{valueFile}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+          - Replace=true

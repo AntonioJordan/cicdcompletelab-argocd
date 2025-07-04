@@ -1,0 +1,22 @@
+# Deployment
+replicaCount: 1
+
+image:
+  repository: docker.io/toni1997/my-react-app
+  tag: 1660ba5f28fa409896efd18092a63ad6cba42b74
+  pullPolicy: Always
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "200m"
+    memory: "256Mi"
+
+#Service
+service:
+  type: NodePort
+  port: 80
+  targetPort: 80
+  nodePort: 30080
