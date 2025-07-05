@@ -14,7 +14,7 @@ spec:
             namespace: monitoring
             helm:
               valueFiles:
-                - ../../values.yaml
+                - apps/prometheus/values.yaml
           - name: grafana
             repoURL: https://github.com/AntonioJordan/cicdcompletelab-argocd
             targetRevision: HEAD
@@ -22,7 +22,7 @@ spec:
             namespace: monitoring
             helm:
               valueFiles:
-                - ../../values.yaml
+                - apps/prometheus/values.yaml
           - name: frontend
             repoURL: https://github.com/AntonioJordan/cicdcompletelab-openshift
             targetRevision: HEAD
