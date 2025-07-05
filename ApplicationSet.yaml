@@ -19,7 +19,7 @@ spec:
             repoURL: https://github.com/AntonioJordan/cicdcompletelab-argocd
             targetRevision: HEAD
             path: apps
-            namespace: grafana/monitoring
+            namespace: monitoring
             helm:
               valueFiles:
                 - ../../values.yaml
