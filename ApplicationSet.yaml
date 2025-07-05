@@ -12,16 +12,19 @@ spec:
             targetRevision: HEAD
             path: apps/prometheus
             namespace: monitoring
+            valuesFile: values.yaml
           - name: grafana
             repoURL: https://github.com/AntonioJordan/cicdcompletelab-argocd
             targetRevision: HEAD
             path: apps/grafana
             namespace: monitoring
+            valuesFile: values.yaml
           - name: frontend
             repoURL: https://github.com/AntonioJordan/cicdcompletelab-openshift
             targetRevision: HEAD
             path: helm-templates
             namespace: react-app
+            valuesFile: values.yaml
   template:
     metadata:
       name: '{{name}}'
@@ -33,7 +36,7 @@ spec:
         path: '{{path}}'
         helm:
           valueFiles:
-            - values.yaml
+            - "{{valuesFile}}"
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{namespace}}'
