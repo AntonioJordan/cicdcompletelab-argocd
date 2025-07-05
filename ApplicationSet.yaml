@@ -7,18 +7,18 @@ spec:
   generators:
     - list:
         elements:
-          - name: prometheus
-            repoURL: https://github.com/AntonioJordan/cicdcompletelab-argocd
-            targetRevision: HEAD
-            path: apps/prometheus
-            namespace: monitoring
-            helm:
-              valueFiles:
-                - values.yaml
+          # - name: prometheus
+          #   repoURL: https://github.com/AntonioJordan/cicdcompletelab-argocd
+          #   targetRevision: HEAD
+          #   path: apps/prometheus
+          #   namespace: monitoring
+          #   helm:
+          #     valueFiles:
+          #       - values.yaml
           - name: grafana
             repoURL: https://github.com/AntonioJordan/cicdcompletelab-argocd
             targetRevision: HEAD
-            path: grafana
+            path: apps
             namespace: monitoring
             helm:
               valueFiles:
