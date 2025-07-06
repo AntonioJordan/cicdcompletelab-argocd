@@ -1,0 +1,13 @@
+#Instaled Helm custom plugin --> referenced values.ymal
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: argocd
+data:
+  configManagementPlugins: |
+    - name: helm-custom
+      init:
+        command: [sh, -c, "helm dependency build"]
+      generate:
+        command: [sh, -c, "./.argocd-plugins/helm-custom.sh"]
