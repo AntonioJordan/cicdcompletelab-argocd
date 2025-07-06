@@ -1,8 +1,10 @@
-#Instaled Helm custom plugin --> referenced values.ymal
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-cm
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: argocd
 data:
   configManagementPlugins: |
     - name: helm-custom
