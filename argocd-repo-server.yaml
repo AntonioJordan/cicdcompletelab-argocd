@@ -4,7 +4,6 @@ metadata:
   name: argocd-repo-server
   namespace: argocd
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-repo-server
@@ -15,18 +14,24 @@ spec:
     spec:
       containers:
         - name: argocd-repo-server
-          image: quay.io/argoproj/argocd:v2.8.0
-          ports:
-            - containerPort: 8081
+          image: quay.io/argoproj/argocd:v2.8.4
+          command: [ "argocd-repo-server" ]
           volumeMounts:
             - name: var-files
               mountPath: /var/run/argocd
+            - name: plugins
+              mountPath: /home/argocd/cmp-server/plugins
         - name: cmp-helm-custom
-          image: quay.io/argoproj/argocd:v2.8.0
-          command: ["/var/run/argocd/argocd-cmp-server"]
+          image: quay.io/argoproj/argocd:v2.8.4
+          command: [ "/var/run/argocd/argocd-cmp-server" ]
           volumeMounts:
             - name: var-files
               mountPath: /var/run/argocd
+            - name: plugins
+              mountPath: /home/argocd/cmp-server/plugins
       volumes:
         - name: var-files
           emptyDir: {}
+        - name: plugins
+          configMap:
+            name: argocd-cm
