@@ -1,0 +1,10 @@
+resources:
+  - ../../grafana
+
+configMapGenerator:
+  - name: grafana-values
+    files:
+      - values.yaml
+
+namespace: monitoring
+namePrefix: dev-
