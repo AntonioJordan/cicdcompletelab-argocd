@@ -1,35 +1,47 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: monitoring-application
+  name: default
   namespace: argocd
 spec:
   generators:
     - list:
         elements:
-          - name: prometheus
+          - appName: prometheus
             repoURL: https://github.com/AntonioJordan/cicdcompletelab-argocd
-            targetRevision: HEAD
+            namespace: monitoring
             path: apps/prometheus
-            namespace: monitoring
-          - name: grafana
+          - appName: grafana
             repoURL: https://github.com/AntonioJordan/cicdcompletelab-argocd
-            targetRevision: HEAD
-            path: apps/grafana/
+            path: apps/grafana
             namespace: monitoring
+          # - appName: frontend
+          #   repoURL: https://github.com/AntonioJordan/cicdcompletelab-openshift
+          #   targetRevision: HEAD
+          #   path: helm-templates
+          #   namespace: react-app
+          #   helm:
+          #     valueFiles:
+          #       - values.yaml
+
   template:
     metadata:
-      name: "{{name}}"
+      name: "{{appName}}"
+      annotations:
+        argocd.argoproj.io/manifest-generate-paths: ".;.."
     spec:
       project: default
       source:
         repoURL: "{{repoURL}}"
-        targetRevision: "{{targetRevision}}"
+        targetRevision: HEAD
         path: "{{path}}"
-        plugin:
-          name: helm-custom
+        helm:
+          releaseName: "{{appName}}"
+          valueFiles:
+          - "values.yaml"
       destination:
         server: https://kubernetes.default.svc
+        name: in-cluster
         namespace: "{{namespace}}"
       syncPolicy:
         automated:
