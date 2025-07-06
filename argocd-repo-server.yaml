@@ -4,6 +4,7 @@ metadata:
   name: argocd-repo-server
   namespace: argocd
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-repo-server
@@ -12,10 +13,23 @@ spec:
       labels:
         app.kubernetes.io/name: argocd-repo-server
     spec:
+      volumes:
+        - name: var-files
+          emptyDir: {}
+        - name: plugins
+          configMap:
+            name: argocd-cm
+      initContainers:
+        - name: copyutil
+          image: quay.io/argoproj/argocd:v2.8.4
+          command: ["/bin/cp", "-n", "/usr/local/bin/argocd", "/var/run/argocd/argocd-cmp-server"]
+          volumeMounts:
+            - name: var-files
+              mountPath: /var/run/argocd
       containers:
         - name: argocd-repo-server
           image: quay.io/argoproj/argocd:v2.8.4
-          command: [ "argocd-repo-server" ]
+          command: ["/usr/local/bin/argocd-repo-server"]
           volumeMounts:
             - name: var-files
               mountPath: /var/run/argocd
@@ -23,15 +37,9 @@ spec:
               mountPath: /home/argocd/cmp-server/plugins
         - name: cmp-helm-custom
           image: quay.io/argoproj/argocd:v2.8.4
-          command: [ "/var/run/argocd/argocd-cmp-server" ]
+          command: ["/var/run/argocd/argocd-cmp-server"]
           volumeMounts:
             - name: var-files
               mountPath: /var/run/argocd
             - name: plugins
               mountPath: /home/argocd/cmp-server/plugins
-      volumes:
-        - name: var-files
-          emptyDir: {}
-        - name: plugins
-          configMap:
-            name: argocd-cm
