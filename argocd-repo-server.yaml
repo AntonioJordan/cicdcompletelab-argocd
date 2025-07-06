@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-repo-server
+  namespace: argocd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: argocd-repo-server
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: argocd-repo-server
+    spec:
+      containers:
+        - name: argocd-repo-server
+          image: quay.io/argoproj/argocd:v2.8.0
+          ports:
+            - containerPort: 8081
+          volumeMounts:
+            - name: var-files
+              mountPath: /var/run/argocd
+        - name: cmp-helm-custom
+          image: quay.io/argoproj/argocd:v2.8.0
+          command: ["/var/run/argocd/argocd-cmp-server"]
+          volumeMounts:
+            - name: var-files
+              mountPath: /var/run/argocd
+      volumes:
+        - name: var-files
+          emptyDir: {}
