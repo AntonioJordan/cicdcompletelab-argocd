@@ -36,7 +36,7 @@ spec:
         helm:
           releaseName: "{{appName}}"
           valueFiles:
-          - "values.yaml"
+          - "apps/{{appName}}/values.yaml"
       destination:
         name: in-cluster
         namespace: "{{namespace}}"
