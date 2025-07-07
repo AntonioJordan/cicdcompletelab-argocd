@@ -11,10 +11,17 @@ spec:
             repoURL: https://github.com/AntonioJordan/cicdcompletelab-argocd
             namespace: monitoring
             path: apps/prometheus
+            values: |-
+              {}
           - appName: grafana
             repoURL: https://github.com/AntonioJordan/cicdcompletelab-argocd
             path: apps/grafana
             namespace: monitoring
+            values: |-
+              service:
+                type: NodePort
+                nodePort: 32000
+                enabled: true
           # - appName: frontend
           #   repoURL: https://github.com/AntonioJordan/cicdcompletelab-openshift
           #   targetRevision: HEAD
@@ -34,9 +41,12 @@ spec:
         targetRevision: HEAD
         path: "{{path}}"
         helm:
-          releaseName: "{{appName}}"
-          valueFiles:
-          - "values.yaml"
+          values: |
+            {{values}}
+        # helm:
+        #   releaseName: "{{appName}}"
+        #   valueFiles:
+        #   - "values.yaml"
       destination:
         name: in-cluster
         namespace: "{{namespace}}"
