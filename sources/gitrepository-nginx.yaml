@@ -1,10 +1,8 @@
-apiVersion: source.toolkit.fluxcd.io/v1beta2
-kind: GitRepository
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
 metadata:
-  name: mi-chart
+  name: mi-chart-repo
   namespace: flux-system
 spec:
-  interval: 1m
-  url: https://github.com/AntonioJordan/cicdcompletelab-openshift
-  ref:
-    branch: main
+  interval: 10m
+  url: https://antoniojordan.github.io/cicdcompletelab-openshift
