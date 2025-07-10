@@ -1,4 +1,0 @@
-service:
-  type: NodePort
-  nodePort: 32000
-  enabled: true

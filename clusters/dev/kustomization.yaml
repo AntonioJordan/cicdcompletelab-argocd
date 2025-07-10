@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../infrastructure/namespaces/flux-system
+  - ../../infrastructure/namespaces/monitoring
+  - ../../infrastructure/namespaces/react-app
+  - ../../sources
+  - apps/monitoring
+  - apps/react-app

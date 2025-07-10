@@ -1,0 +1,2 @@
+resources:
+  - helmrelease-react-nginx.yaml
