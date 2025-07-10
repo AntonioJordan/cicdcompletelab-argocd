@@ -20,15 +20,6 @@ flux bootstrap github \
   --path=fluxcd-prod \
   --personal 
 
-
-flux create source helm prometheus-repo \
-  --url=https://prometheus-community.github.io/helm-charts \
-  --namespace=flux-system \
-  --interval=1h
-
-
-
-
 ```
 
 ## Apply changes
