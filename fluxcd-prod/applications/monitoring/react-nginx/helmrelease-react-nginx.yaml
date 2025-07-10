@@ -1,0 +1,32 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: mi-chart
+  namespace: default
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: helm-templates
+      sourceRef:
+        kind: GitRepository
+        name: mi-chart
+        namespace: flux-system
+  values:
+    replicaCount: 1
+    image:
+      repository: docker.io/toni1997/my-react-app
+      tag: 1660ba5f28fa409896efd18092a63ad6cba42b74
+      pullPolicy: Always
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "200m"
+        memory: "256Mi"
+    service:
+      type: NodePort
+      port: 80
+      targetPort: 80
+      nodePort: 30080
