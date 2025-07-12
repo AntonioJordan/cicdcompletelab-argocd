@@ -18,7 +18,7 @@ server:
     evaluation_interval: 1m
   persistentVolume:
     size: 10Gi
-    storageClass: expandable-storage
+    storageClass: standard
   retention: "15d"
   service:
     type: NodePort
