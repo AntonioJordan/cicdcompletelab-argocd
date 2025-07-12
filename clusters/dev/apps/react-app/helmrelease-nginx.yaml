@@ -17,7 +17,7 @@ spec:
     replicaCount: 1
     image:
       repository: docker.io/toni1997/my-react-app
-      tag: 1660ba5f28fa409896efd18092a63ad6cba42b74
+      tag: latest
       pullPolicy: Always
     resources:
       requests:
