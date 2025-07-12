@@ -11,7 +11,7 @@ spec:
     branch: main
   secretRef:
     name: flux-system
-  url: https://github.com/AntonioJordan/cicdcompletelab-argocd.git
+  url: ssh://git@github.com/AntonioJordan/cicdcompletelab-argocd
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
