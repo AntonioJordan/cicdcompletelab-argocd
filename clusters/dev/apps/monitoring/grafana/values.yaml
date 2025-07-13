@@ -5,6 +5,9 @@ service:
   type: NodePort
   nodePort: 32000
 
+grafana.ini:
+  theme: light
+
 plugins:
   - marcusolsson-json-datasource
 
@@ -17,3 +20,8 @@ datasources:
         url: http://prometheus-server.monitoring.svc.cluster.local
         access: proxy
         isDefault: true
+
+dashboards:
+  default:
+    mi-dashboard:
+      file: grafana-dashboards/node-exporter.json
