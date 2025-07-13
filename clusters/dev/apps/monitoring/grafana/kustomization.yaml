@@ -9,6 +9,7 @@ configMapGenerator:
   - name: grafana-values
     files:
       - values.yaml
+      - grafana-dashboards/node-exporter.json
 
 generatorOptions:
   disableNameSuffixHash: true

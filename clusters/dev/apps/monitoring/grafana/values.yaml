@@ -26,7 +26,7 @@ dashboardProviders:
   dashboardproviders.yaml:
     apiVersion: 1
     providers:
-      - name: graph-node-exporter
+      - name: node-exporter
         orgId: 1
         folder: NodeExporter
         type: file
@@ -36,6 +36,6 @@ dashboardProviders:
           path: /var/lib/grafana/dashboards
 
 dashboards:
-  graph-node-exporter:
+  node-exporter:
     node-exporter:
       file: grafana-dashboards/node-exporter.json
