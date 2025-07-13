@@ -6,7 +6,8 @@ service:
   nodePort: 32000
 
 grafana.ini:
-  theme: light
+  users:
+    default_theme: light
 
 plugins:
   - marcusolsson-json-datasource
