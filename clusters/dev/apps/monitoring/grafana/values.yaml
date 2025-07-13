@@ -28,12 +28,12 @@ dashboardProviders:
     providers:
       - name: graph-node-exporter
         orgId: 1
-        folder: 'NodeExporter'
+        folder: NodeExporter
         type: file
         disableDeletion: false
         editable: true
         options:
-          path: /var/lib/grafana/dashboards/graph-node-exporter
+          path: /var/lib/grafana/dashboards
 
 dashboards:
   graph-node-exporter:
