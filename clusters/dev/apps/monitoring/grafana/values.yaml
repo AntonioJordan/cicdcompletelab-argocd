@@ -33,9 +33,14 @@ dashboardProviders:
         disableDeletion: false
         editable: true
         options:
-          path: /var/lib/grafana/dashboards
+          path: /var/lib/grafana/dashboards/node-exporter
 
-dashboards:
-  node-exporter:
-    node-exporter:
-      file: grafana-dashboards/node-exporter.json
+extraVolumeMounts:
+  - name: node-exporter-dashboard
+    mountPath: /var/lib/grafana/dashboards/node-exporter
+    readOnly: true
+
+extraVolumes:
+  - name: node-exporter-dashboard
+    configMap:
+      name: node-exporter-dashboard
