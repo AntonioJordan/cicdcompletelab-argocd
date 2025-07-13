@@ -9,6 +9,8 @@ configMapGenerator:
   - name: grafana-values
     files:
       - values.yaml
+  - name: node-exporter-dashboard
+    files:
       - grafana-dashboards/node-exporter.json
 
 generatorOptions:
