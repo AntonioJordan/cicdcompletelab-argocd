@@ -22,7 +22,20 @@ datasources:
         access: proxy
         isDefault: true
 
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+      - name: graph-node-exporter
+        orgId: 1
+        folder: 'NodeExporter'
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/graph-node-exporter
+
 dashboards:
-  default:
+  graph-node-exporter:
     mi-dashboard:
       file: grafana-dashboards/node-exporter.json
