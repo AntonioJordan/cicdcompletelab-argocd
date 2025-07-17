@@ -34,10 +34,21 @@ dashboardProviders:
         editable: true
         options:
           path: /var/lib/grafana/dashboards/node-exporter
+      - name: nginx
+        orgId: 1
+        folder: NGINX
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/nginx
 
 extraVolumeMounts:
   - name: node-exporter-dashboard
     mountPath: /var/lib/grafana/dashboards/node-exporter
+    readOnly: true
+  - name: nginx-dashboard
+    mountPath: /var/lib/grafana/dashboards/nginx
     readOnly: true
 
 extraVolumes:
