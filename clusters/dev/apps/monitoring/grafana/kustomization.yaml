@@ -12,6 +12,9 @@ configMapGenerator:
   - name: node-exporter-dashboard
     files:
       - grafana-dashboards/node-exporter.json
+  - name: nginx-dashboard
+    files:
+      - grafana-dashboards/nginxinc-nginx.json
 
 generatorOptions:
   disableNameSuffixHash: true

@@ -44,3 +44,6 @@ extraVolumes:
   - name: node-exporter-dashboard
     configMap:
       name: node-exporter-dashboard
+  - name: nginx-dashboard
+    configMap:
+      name: nginx-dashboard
