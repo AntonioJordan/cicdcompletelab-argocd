@@ -15,7 +15,7 @@ spec:
         namespace: flux-system
   values:
     loki:
-      config:
+      config: |
         table_manager:
           retention_deletes_enabled: true
           retention_period: 168h
