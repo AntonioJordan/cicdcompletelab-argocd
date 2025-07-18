@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: grafana-agent
-      version: 0.36.2
+      version: 0.37.0
       sourceRef:
         kind: HelmRepository
         name: grafana-repo
@@ -34,10 +34,10 @@ spec:
               logs:
                 receivers: [filelog]
                 exporters: [loki]
-      extraVolumes:
-        - name: varlog
-          hostPath:
-            path: /var/log
-      extraVolumeMounts:
-        - name: varlog
-          mountPath: /var/log
+    extraVolumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+    extraVolumeMounts:
+      - name: varlog
+        mountPath: /var/log
