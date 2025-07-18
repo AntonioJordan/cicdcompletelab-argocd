@@ -19,6 +19,8 @@ spec:
       auth_enabled: false
       storage:
         type: filesystem
+    singleBinary:
+      replicas: 1
     persistence:
       enabled: true
       storageClassName: standard
