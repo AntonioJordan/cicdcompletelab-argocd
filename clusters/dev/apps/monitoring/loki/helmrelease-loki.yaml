@@ -14,16 +14,20 @@ spec:
         name: grafana-repo
         namespace: flux-system
   values:
-    deploymentMode: SingleBinary
+    mode: monolith
     loki:
       auth_enabled: false
       storage:
         type: filesystem
+        bucketNames:
+          chunks: ""
+          ruler: ""
+          admin: ""
     persistence:
       enabled: true
+      storageClassName: standard
       accessModes: ["ReadWriteOnce"]
       size: 10Gi
-      storageClassName: standard
     serviceMonitor:
       enabled: true
     podMonitor:
