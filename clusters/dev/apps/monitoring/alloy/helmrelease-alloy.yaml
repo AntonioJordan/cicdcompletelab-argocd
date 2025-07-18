@@ -1,0 +1,39 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: alloy
+  namespace: monitoring
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: alloy
+      version: 0.4.1
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+  values:
+    alloy:
+      config:
+        server:
+          log_level: info
+        receivers:
+          filelog:
+            include: [/var/log/**/*.log]
+            start_at: beginning
+        exporters:
+          loki:
+            endpoint: http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push
+        service:
+          pipelines:
+            logs:
+              receivers: [filelog]
+              exporters: [loki]
+    extraVolumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+    extraVolumeMounts:
+      - name: varlog
+        mountPath: /var/log
