@@ -14,12 +14,13 @@ spec:
         name: grafana-repo
         namespace: flux-system
   values:
+    loki:
+      config:
+        table_manager:
+          retention_deletes_enabled: true
+          retention_period: 168h
     mode: monolith
     persistence:
       enabled: true
       storageClassName: standard
       size: 10Gi
-    config:
-      table_manager:
-        retention_deletes_enabled: true
-        retention_period: 168h
