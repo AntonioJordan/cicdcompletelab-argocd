@@ -46,20 +46,10 @@ serverFiles:
         static_configs:
           - targets:
               - prometheus-prometheus-node-exporter.monitoring.svc.cluster.local:9100
-      # Nota, prometheus no scrapea logs eso lo debe hacer grafana
-      # - job_name: 'loki'
-      #   static_configs:
-      #     - targets:
-      #         - loki.monitoring.svc.cluster.local:3100
-      - job_name: 'loki-metrics-generator'
-        metrics_path: /metrics
+      - job_name: 'loki-metrics'
         static_configs:
           - targets:
-              - loki.monitoring.svc.cluster.local:3101
-      - job_name: 'loki-metrics-created-by-loki'
-        static_configs:
-          - targets:
-              - loki.monitoring.svc.cluster.local:9095
+              - loki.monitoring.svc.cluster.local:3102
 
 
 alertmanager:
