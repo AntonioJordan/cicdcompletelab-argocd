@@ -17,7 +17,7 @@ configMapGenerator:
       - grafana-dashboards/nginxinc-nginx.json
   - name: loki-dashboard
     files:
-      - grafana-dashboards/loki.json
+      - grafana-dashboards/loki-metrics.json
 
 generatorOptions:
   disableNameSuffixHash: true

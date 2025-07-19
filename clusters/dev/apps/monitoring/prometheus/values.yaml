@@ -46,6 +46,10 @@ serverFiles:
         static_configs:
           - targets:
               - prometheus-prometheus-node-exporter.monitoring.svc.cluster.local:9100
+      - job_name: 'loki'
+        static_configs:
+          - targets:
+              - loki.monitoring.svc.cluster.local:3100
 
 alertmanager:
   enabled: true
