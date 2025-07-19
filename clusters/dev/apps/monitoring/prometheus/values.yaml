@@ -49,7 +49,7 @@ serverFiles:
       - job_name: 'loki'
         static_configs:
           - targets:
-              - loki.monitoring.svc.cluster.local:http-metrics
+              - loki.monitoring.svc.cluster.local:3100
 
 alertmanager:
   enabled: true
