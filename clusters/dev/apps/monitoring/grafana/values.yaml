@@ -28,7 +28,6 @@ datasources:
         isDefault: false
         editable: true
 
-
 dashboardProviders:
   dashboardproviders.yaml:
     apiVersion: 1
