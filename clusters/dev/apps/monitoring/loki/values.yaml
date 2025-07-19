@@ -70,3 +70,12 @@ write:
   replicas: 0
 chunksCache:
   allocatedMemory: 500
+
+metricsGenerator:
+  enabled: true
+  
+service:
+  ports:
+    - name: metrics-generator
+      port: 3101
+      targetPort: 3101
