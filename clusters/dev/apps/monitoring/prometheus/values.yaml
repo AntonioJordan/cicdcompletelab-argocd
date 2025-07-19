@@ -56,6 +56,11 @@ serverFiles:
         static_configs:
           - targets:
               - loki.monitoring.svc.cluster.local:3101
+      - job_name: 'loki-metrics-created-by-loki'
+        static_configs:
+          - targets:
+              - loki.monitoring.svc.cluster.local:9095
+
 
 alertmanager:
   enabled: true
