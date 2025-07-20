@@ -8,6 +8,8 @@ service:
 grafana.ini:
   users:
     default_theme: light
+  tracing:
+    datasource_name: Jaeger
 
 plugins:
   - marcusolsson-json-datasource
