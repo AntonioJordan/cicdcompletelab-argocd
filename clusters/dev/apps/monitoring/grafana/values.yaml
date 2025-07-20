@@ -27,6 +27,13 @@ datasources:
         access: proxy
         isDefault: false
         editable: true
+      - name: Jaeger
+        type: jaeger
+        access: proxy
+        url: http://jaeger-query.monitoring.svc.cluster.local:16686
+        isDefault: false
+        editable: true
+
 
 dashboardProviders:
   dashboardproviders.yaml:

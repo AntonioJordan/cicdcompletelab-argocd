@@ -1,0 +1,48 @@
+provisionDataStore:
+  cassandra: false
+  elasticsearch: true
+  kafka: false
+
+storage:
+  type: elasticsearch
+  options:
+    es:
+      server-urls: http://elasticsearch.monitoring.svc.cluster.local:9200
+
+collector:
+  enabled: true
+  service:
+    type: ClusterIP
+  resources:
+    requests:
+      memory: 64Mi
+      cpu: 50m
+    limits:
+      memory: 128Mi
+      cpu: 100m
+
+query:
+  enabled: true
+  service:
+    type: ClusterIP
+  resources:
+    requests:
+      memory: 64Mi
+      cpu: 50m
+    limits:
+      memory: 128Mi
+      cpu: 100m
+
+agent:
+  enabled: true
+  strategy: DaemonSet
+  resources:
+    requests:
+      memory: 32Mi
+      cpu: 25m
+    limits:
+      memory: 64Mi
+      cpu: 50m
+
+ui:
+  enabled: true
