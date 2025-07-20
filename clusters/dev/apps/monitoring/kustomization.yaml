@@ -5,3 +5,5 @@ resources:
   - prometheus
   - loki
   - alloy
+  - elastic-search
+  - jaeger
