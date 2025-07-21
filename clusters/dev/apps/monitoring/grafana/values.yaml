@@ -8,8 +8,6 @@ service:
 grafana.ini:
   users:
     default_theme: light
-  tracing:
-    datasource_name: Jaeger
 
 plugins:
   - marcusolsson-json-datasource
@@ -35,7 +33,6 @@ datasources:
         url: http://jaeger-query.monitoring.svc.cluster.local:16686
         isDefault: false
         editable: true
-
 
 dashboardProviders:
   dashboardproviders.yaml:
