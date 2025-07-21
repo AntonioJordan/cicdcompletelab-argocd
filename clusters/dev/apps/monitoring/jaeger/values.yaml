@@ -17,9 +17,6 @@ collector:
     requests:
       memory: 64Mi
       cpu: 50m
-    limits:
-      memory: 128Mi
-      cpu: 100m
 
 query:
   enabled: true
@@ -29,9 +26,6 @@ query:
     requests:
       memory: 64Mi
       cpu: 50m
-    limits:
-      memory: 128Mi
-      cpu: 100m
 
 agent:
   enabled: true
@@ -40,9 +34,6 @@ agent:
     requests:
       memory: 32Mi
       cpu: 25m
-    limits:
-      memory: 64Mi
-      cpu: 50m
 
 ui:
   enabled: true

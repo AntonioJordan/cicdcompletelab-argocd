@@ -1,14 +1,9 @@
 replicas: 1
 minimumMasterNodes: 1
 esJavaOpts: "-Xms128m -Xmx128m"
-resources:
-  requests:
-    cpu: 100m
-    memory: 256Mi
-  limits:
-    cpu: 200m
-    memory: 512Mi
+
 volumeClaimTemplate:
+  storageClassName: standard
   accessModes: [ "ReadWriteOnce" ]
   resources:
     requests:
