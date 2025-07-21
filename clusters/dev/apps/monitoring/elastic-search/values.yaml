@@ -1,15 +1,19 @@
 replicas: 1
 minimumMasterNodes: 1
-esJavaOpts: "-Xms128m -Xmx128m"
+
+esJavaOpts: "-Xms1g -Xmx1g"
 
 volumeClaimTemplate:
   storageClassName: standard
   accessModes: ["ReadWriteOnce"]
   resources:
     requests:
-      storage: 1Gi
+      storage: 10Gi
 
 resources:
   requests:
-    cpu: 50m
-    memory: 512Mi
+    cpu: 500m
+    memory: 2Gi
+  limits:
+    cpu: 1
+    memory: 3Gi
