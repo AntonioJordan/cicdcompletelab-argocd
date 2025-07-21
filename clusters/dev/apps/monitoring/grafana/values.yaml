@@ -84,3 +84,7 @@ extraVolumes:
   - name: loki-dashboard
     configMap:
       name: loki-dashboard
+
+env:
+  - name: GF_TRACING_ENABLED
+    value: "false"
