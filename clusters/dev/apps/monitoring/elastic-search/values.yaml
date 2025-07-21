@@ -4,7 +4,12 @@ esJavaOpts: "-Xms128m -Xmx128m"
 
 volumeClaimTemplate:
   storageClassName: standard
-  accessModes: [ "ReadWriteOnce" ]
+  accessModes: ["ReadWriteOnce"]
   resources:
     requests:
       storage: 1Gi
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 512Mi
