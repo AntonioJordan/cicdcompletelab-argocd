@@ -18,20 +18,3 @@ spec:
     - kind: ConfigMap
       name: elastic-search-values
       valuesKey: values.yaml
-  values:
-    resources:
-      requests:
-        cpu: "500m"
-        memory: "2Gi"
-      limits:
-        cpu: "1"
-        memory: "3Gi"
-    volumeClaimTemplate:
-      storageClassName: standard
-      accessModes: ["ReadWriteOnce"]
-      resources:
-        requests:
-          storage: 10Gi
-    replicas: 1
-    minimumMasterNodes: 1
-    esJavaOpts: "-Xms1g -Xmx1g"
