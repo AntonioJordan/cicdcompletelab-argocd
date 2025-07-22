@@ -1,4 +1,5 @@
 deploymentMode: SingleBinary
+
 loki:
   auth_enabled: false
   commonConfig:
@@ -34,18 +35,29 @@ loki:
       listen_address: 0.0.0.0:3102
       route_prefix: /metrics
 
+# Desactiva resolución DNS de clúster innecesario en modo SingleBinary
+memberlistConfig:
+  join_members: []
+  abort_if_cluster_join_fails: false
+
 server:
   http_listen_port: 3100
 
 minio:
   enabled: false
+
 singleBinary:
   replicas: 1
+  # Desactiva PVC, usa emptyDir automáticamente en este modo
   persistence:
-    storageClass: standard
-    accessModes:
-      - ReadWriteOnce
-    size: 20Gi
+    enabled: false
+  extraVolumeMounts:
+    - name: loki-storage
+      mountPath: /var/loki
+  extraVolumes:
+    - name: loki-storage
+      emptyDir: {}
+
   resources:
     requests:
       cpu: "500m"
@@ -53,6 +65,7 @@ singleBinary:
     limits:
       cpu: "2"
       memory: "4Gi"
+
 sidecar:
   image:
     repository: kiwigrid/k8s-sidecar
@@ -64,6 +77,7 @@ sidecar:
     limits:
       cpu: 100m
       memory: 100Mi
+
 backend:
   replicas: 0
 read:
@@ -72,8 +86,8 @@ write:
   replicas: 0
 chunksCache:
   allocatedMemory: 2048
-  
-#Util pero consume mucho así que lo dejamos en false
+
+# Util pero consume mucho así que lo dejamos en false
 metricsGenerator:
   enabled: false
 

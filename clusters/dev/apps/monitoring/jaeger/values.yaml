@@ -1,18 +1,28 @@
+# Para usar elastic externo
+# storage:
+#   type: elasticsearch
+#   options:
+#     es:
+#       server-urls: http://elasticsearch.monitoring.svc.cluster.local:9200
+
 provisionDataStore:
   cassandra: false
-  elasticsearch: true
+  elasticsearch: false
   kafka: false
 
 storage:
-  type: elasticsearch
+  type: badger
   options:
-    es:
-      server-urls: http://elasticsearch.monitoring.svc.cluster.local:9200
+    badger:
+      directory-key: /badger/key
+      directory-value: /badger/data
 
 collector:
   enabled: true
   service:
     type: ClusterIP
+  options:
+    span-storage.type: badger
   resources:
     requests:
       memory: 64Mi
@@ -20,11 +30,19 @@ collector:
     limits:
       memory: 128Mi
       cpu: 100m
+  extraVolumes:
+    - name: badger-data
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: badger-data
+      mountPath: /badger
 
 query:
   enabled: true
   service:
     type: ClusterIP
+  options:
+    span-storage.type: badger
   resources:
     requests:
       memory: 64Mi
@@ -32,9 +50,16 @@ query:
     limits:
       memory: 128Mi
       cpu: 100m
+  extraVolumes:
+    - name: badger-data
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: badger-data
+      mountPath: /badger
 
 agent:
   enabled: true
+  nameOverride: custom-agent
   strategy: DaemonSet
   resources:
     requests:
@@ -44,8 +69,6 @@ agent:
       memory: 64Mi
       cpu: 50m
 
-
 ui:
   enabled: true
-
-
+  

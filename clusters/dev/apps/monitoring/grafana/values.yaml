@@ -8,9 +8,11 @@ service:
 grafana.ini:
   users:
     default_theme: light
+  tracing:
+    enabled: false
+  tracing.jaeger:
+    address: ""
 
-plugins:
-  - marcusolsson-json-datasource
 
 datasources:
   datasources.yaml:
@@ -27,12 +29,12 @@ datasources:
         access: proxy
         isDefault: false
         editable: true
-      - name: Jaeger
-        type: jaeger
-        access: proxy
-        url: http://jaeger-query.monitoring.svc.cluster.local:16686
-        isDefault: false
-        editable: true
+      # - name: Jaeger
+      #   type: jaeger
+      #   access: proxy
+      #   url: http://jaeger-query.monitoring.svc.cluster.local:16686
+      #   isDefault: false
+      #   editable: true
 
 dashboardProviders:
   dashboardproviders.yaml:
@@ -86,5 +88,8 @@ extraVolumes:
       name: loki-dashboard
 
 env:
-  - name: GF_TRACING_ENABLED
-    value: "false"
+  GF_SECURITY_ADMIN_PASSWORD__FILE: ""
+  # GF_TRACING_ENABLED: "true"
+  JAEGER_AGENT_PORT: "5775"
+  GF_TRACING_ENABLED: "false"
+  GF_TRACING_JAEGER_ADDRESS: ""
