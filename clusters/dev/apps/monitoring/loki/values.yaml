@@ -72,9 +72,10 @@ write:
   replicas: 0
 chunksCache:
   allocatedMemory: 2048
-
+  
+#Util pero consume mucho así que lo dejamos en false
 metricsGenerator:
-  enabled: true
+  enabled: false
 
 service:
   ports:

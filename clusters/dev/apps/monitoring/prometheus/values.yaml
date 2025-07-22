@@ -23,6 +23,13 @@ server:
   service:
     type: NodePort
     nodePort: 31058
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
 
 serverFiles:
   recording_rules.yml:
@@ -56,14 +63,42 @@ alertmanager:
   enabled: true
   persistence:
     size: 2Gi
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
 
 kube-state-metrics:
   enabled: true
+  resources:
+    limits:
+      cpu: 100m
+      memory: 200Mi
+    requests:
+      cpu: 50m
+      memory: 100Mi
 
 prometheus-node-exporter:
   enabled: true
+  resources:
+    limits:
+      cpu: 100m
+      memory: 100Mi
+    requests:
+      cpu: 50m
+      memory: 50Mi
 
 prometheus-pushgateway:
   enabled: true
   serviceAnnotations:
     prometheus.io/probe: pushgateway
+  resources:
+    limits:
+      cpu: 100m
+      memory: 100Mi
+    requests:
+      cpu: 50m
+      memory: 50Mi
