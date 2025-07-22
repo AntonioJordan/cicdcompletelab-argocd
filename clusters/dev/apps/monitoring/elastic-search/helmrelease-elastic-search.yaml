@@ -1,20 +1,22 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: elasticsearch
-  namespace: monitoring
-spec:
-  releaseName: elasticsearch
-  chart:
-    spec:
-      chart: elasticsearch
-      sourceRef:
-        kind: HelmRepository
-        name: elastic
-        namespace: flux-system
-      version: "7.17.3"
-  interval: 5m
-  valuesFrom:
-    - kind: ConfigMap
-      name: elastic-search-values
-      valuesKey: values.yaml
+# Este módulo ha sido eliminado
+
+# apiVersion: helm.toolkit.fluxcd.io/v2beta1
+# kind: HelmRelease
+# metadata:
+#   name: elasticsearch
+#   namespace: monitoring
+# spec:
+#   releaseName: elasticsearch
+#   chart:
+#     spec:
+#       chart: elasticsearch
+#       sourceRef:
+#         kind: HelmRepository
+#         name: elastic
+#         namespace: flux-system
+#       version: "7.17.3"
+#   interval: 5m
+#   valuesFrom:
+#     - kind: ConfigMap
+#       name: elastic-search-values
+#       valuesKey: values.yaml
