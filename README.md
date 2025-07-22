@@ -70,3 +70,6 @@ Use GitHub Actions to validate YAML and trigger updates.
 - kubectl
 - access to target Kubernetes cluster
 - Helm 3.x
+
+## Resource Usage
+Prometheus, Loki, Jaeger and Elasticsearch can consume significant CPU and memory resources. Running the full monitoring stack on Minikube may require adjusting Helm values or disabling some components to avoid exhausting the cluster.
