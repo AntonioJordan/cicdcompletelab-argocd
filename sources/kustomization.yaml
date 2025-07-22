@@ -1,7 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - gitrepository-nginx.yaml
+  - helmrepository-nginx.yaml
   - helmrepository-grafana.yaml
   - helmrepository-prometheus.yaml
   - helmrepository-elastic-search.yaml
