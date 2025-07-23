@@ -16,4 +16,4 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: react-values
-      valuesKey: values.yaml`
+      valuesKey: values.yaml
