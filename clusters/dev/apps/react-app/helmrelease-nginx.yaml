@@ -12,15 +12,8 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: mi-chart-repo
-        namespace: flux-system
-  values:
-    replicaCount: 1
-    image:
-      repository: docker.io/toni1997/my-react-app
-      tag: latest
-      pullPolicy: Always
-    service:
-      type: NodePort
-      port: 80
-      targetPort: 80
-      nodePort: 30080
+        namespace: flux-system`
+  valuesFrom:
+    - kind: ConfigMap
+      name: react-values
+      valuesKey: values.yaml`
